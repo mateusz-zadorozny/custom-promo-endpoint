@@ -108,12 +108,15 @@ function apply_promo_on_custom_endpoint()
     // Get the current endpoint (will be empty if not on a defined endpoint)
     $current_endpoint = get_query_var('promo_endpoint');
 
-    // Get the custom promo sets
-    $promo_sets = get_option('custom-promo-sets')['promo_set'];
+    // Get the custom promo sets option
+    $promo_sets_option = get_option('custom-promo-sets');
 
-    // If there's no current endpoint or no promo sets, exit
-    if (empty($current_endpoint) || empty($promo_sets))
-        return;
+    // Check if the option exists and has the 'promo_set' key
+    if (!is_array($promo_sets_option) || !array_key_exists('promo_set', $promo_sets_option) || empty($promo_sets_option['promo_set'])) {
+        return; // Exit if not set, not an array, or empty
+    }
+
+    $promo_sets = $promo_sets_option['promo_set'];
 
     // Loop through each promo set
     foreach ($promo_sets as $set) {
