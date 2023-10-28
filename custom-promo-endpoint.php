@@ -2,7 +2,7 @@
 /**
  * Plugin Name:     Custom Promo Endpoint
  * Plugin URI:      https://mpress.cc
- * Description:     Creates an endpoint for promo codes
+ * Description:     Creates an endpoint for promo codes, requires Meta Box extended module: MB Settings Page 
  * Author:          Mateusz Zadorozny
  * Author URI:      https://mpress.cc
  * Text Domain:     custom-promo-endpoint
