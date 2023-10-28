@@ -150,12 +150,12 @@ add_action('template_redirect', 'apply_promo_on_custom_endpoint');
 
 function custom_promo_rewrite_rule()
 {
-    // Get the custom promo sets
+    // Get the custom promo sets option
     $promo_sets_option = get_option('custom-promo-sets');
 
     // Check if the option exists and has the 'promo_set' key
-    if (!is_array($promo_sets_option) || !isset($promo_sets_option['promo_set'])) {
-        return; // Exit if not set or not an array
+    if (!is_array($promo_sets_option) || !array_key_exists('promo_set', $promo_sets_option) || empty($promo_sets_option['promo_set'])) {
+        return; // Exit if not set, not an array, or empty
     }
 
     $promo_sets = $promo_sets_option['promo_set'];
