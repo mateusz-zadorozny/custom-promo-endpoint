@@ -148,11 +148,17 @@ function apply_promo_on_custom_endpoint()
 }
 add_action('template_redirect', 'apply_promo_on_custom_endpoint');
 
-// Add rewrite rule for custom promo endpoints
 function custom_promo_rewrite_rule()
 {
     // Get the custom promo sets
-    $promo_sets = get_option('custom-promo-sets')['promo_set'];
+    $promo_sets_option = get_option('custom-promo-sets');
+
+    // Check if the option exists and has the 'promo_set' key
+    if (!is_array($promo_sets_option) || !isset($promo_sets_option['promo_set'])) {
+        return; // Exit if not set or not an array
+    }
+
+    $promo_sets = $promo_sets_option['promo_set'];
 
     // Create an array of all endpoints
     $endpoints = array_map(function ($set) {
